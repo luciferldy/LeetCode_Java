@@ -26,7 +26,7 @@ public class SortSample {
     }
 
     private static void insertSort(int[] num) {
-        
+
     }
 
     private static void bubbleSort(int[] num) {
