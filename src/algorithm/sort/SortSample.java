@@ -9,24 +9,105 @@ public class SortSample {
         int[] num = new int[]{1, 3, 5, 3, 4, 5, 9, 7, 5, 6};
 
         // mergeSort
-        int[] n1 = Arrays.copyOf(num, num.length);
-        mergeSort(n1);
-        printArray(n1);
+//        int[] n1 = Arrays.copyOf(num, num.length);
+//        mergeSort(n1);
+//        printArray(n1);
 
         // bubbleSort
-        int[] n2 = Arrays.copyOf(num, num.length);
-        bubbleSort(n2);
-        printArray(n2);
+//        int[] n2 = Arrays.copyOf(num, num.length);
+//        bubbleSort(n2);
+//        printArray(n2);
 
         // selectionSort
-        int[] n3 = Arrays.copyOf(num, num.length);
-        selectionSort(n3);
-        printArray(n3);
+//        int[] n3 = Arrays.copyOf(num, num.length);
+//        selectionSort(n3);
+//        printArray(n3);
+//
+        // insertSort
+//        int[] n4 = Arrays.copyOf(num, num.length);
+//        insertSort(n4);
+//        printArray(n4);
 
+
+        // quickSort
+        int[] n5 = Arrays.copyOf(num, num.length);
+        printArray(n5);
+        quickSort(n5);
+        printArray(n5);
+    }
+
+    private static void quickSort(int[] num) {
+        quickSortRecursive(num, 0, num.length-1);
+    }
+
+    private static void quickSortRecursive(int[] arr, int start, int end) {
+
+        if (start >= end)
+            return;
+        int mid = arr[end];
+        int left = start, right = end - 1;
+        while (left < right) {
+            while (arr[left] <= mid && left < right)
+                left++;
+            while (arr[right] >= mid && left < right)
+                right--;
+            swap(arr, left, right);
+        }
+        if (arr[left] >= arr[end])
+            swap(arr, left, end);
+        else
+            left++;
+
+//        System.out.println(String.format("start=%d, left=%d, end=%d", start, left, end));
+        quickSortRecursive(arr, start, left - 1);
+        quickSortRecursive(arr, left+1, end);
+
+//        if (start >= end)
+//            return;
+//        int mid = arr[end];
+//        int left = start, right = end-1;
+//        while (left < right) {
+//            while (left < right && arr[left] <= mid)
+//                left++;
+//            while (left < right && arr[right] >= mid)
+//                right--;
+//            // 当 left == right 时就不用交还了
+//            if (left != right)
+//                swap(arr, left, right);
+//        }
+//
+//        System.out.println(left);
+//        printArray(arr);
+//        if (arr[left] >= arr[end]) {
+//            swap(arr, left, end);
+//        } else {
+//            left++;
+//        }
+//
+//        quickSortRecursive(arr, start, left-1);
+//        quickSortRecursive(arr, left, end);
+    }
+
+    private static void swap(int[] arr, int x, int y) {
+        int tmp = arr[x];
+        arr[x] = arr[y];
+        arr[y] = tmp;
     }
 
     private static void insertSort(int[] num) {
-
+        for (int i = 1; i < num.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (num[j] > num[i]) {
+                    // 把 num[i] 插到 num[j] 的位置，num[j] 及其向后倒 num[i-1] 的所有数字向后移动一位
+                    num[j] = num[i];
+                    int t = i-1;
+                    while (t-1 >= j) {
+                        num[t] = num[t-1];
+                        t--;
+                    }
+                }
+            }
+        }
     }
 
     private static void bubbleSort(int[] num) {
@@ -111,7 +192,7 @@ public class SortSample {
     private static void printArray(int[] num) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < num.length; i++) {
-            builder.append(i);
+            builder.append(num[i]);
             if (i != num.length-1) {
                 builder.append(", ");
             }
