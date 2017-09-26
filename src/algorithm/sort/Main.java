@@ -5,6 +5,14 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+        Main m = new Main();
+        long lo = 10;
+        m.a(10, lo);
+
+        if (1 > 0)
+            return;
+
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
             String line = scanner.nextLine();
@@ -45,6 +53,31 @@ public class Main {
 
         // 判断 c 中有多少
         return true;
+    }
+
+    static class A {
+        void test() {
+            System.out.println("A");
+        }
+    }
+
+    static class B extends A {
+        void test() {
+//            super.test();
+            System.out.println("B");
+        }
+    }
+
+    void a(int a, int b){
+        System.out.println("int");
+
+    }
+    void a(int a, float b){
+        System.out.println("float");
+
+    }
+    void a(int a, double b){
+        System.out.println("double");
     }
 }
 
