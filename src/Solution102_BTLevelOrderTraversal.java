@@ -11,13 +11,13 @@ public class Solution102_BTLevelOrderTraversal {
         if (root == null)
             return new ArrayList();
 
-        List<TreeNode> nodes = new ArrayList();
+        List<TreeNode> nodes = new ArrayList<>();
         nodes.add(root);
-        List<List<Integer>> result = new LinkedList();
+        List<List<Integer>> result = new LinkedList<>();
         int offset = 0;
         while (true) {
             int len = nodes.size();
-            List<Integer> t = new LinkedList();
+            List<Integer> t = new LinkedList<>();
             for (int i = offset; i < len; i++) {
                 t.add(nodes.get(i).val);
                 offset++;
